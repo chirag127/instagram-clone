@@ -38,16 +38,11 @@ const AuthStack = () => (
 
 // Instagram Logo Header Component
 const InstagramLogoTitle = () => (
-    <Text
-        style={{
-            fontFamily: "cursive",
-            fontSize: 28,
-            fontWeight: "500",
-            color: COLORS.black,
-        }}
-    >
-        Instagram
-    </Text>
+    <Image
+        source={require("../../assets/instagram-logo-text.svg")}
+        style={{ height: 30, width: 105 }}
+        resizeMode="contain"
+    />
 );
 
 // Home Stack Navigator
@@ -73,13 +68,18 @@ const HomeStack = () => (
                     <View
                         style={{ flexDirection: "row", marginRight: SIZES.md }}
                     >
-                        <Feather
-                            name="heart"
+                        <Ionicons
+                            name="heart-outline"
                             size={24}
                             color={COLORS.black}
                             style={{ marginRight: SIZES.md }}
                         />
                         <Feather name="send" size={24} color={COLORS.black} />
+                    </View>
+                ),
+                headerLeft: () => (
+                    <View style={{ marginLeft: SIZES.md }}>
+                        <Feather name="camera" size={24} color={COLORS.black} />
                     </View>
                 ),
             }}
@@ -157,11 +157,10 @@ const TabNavigator = () => (
             component={HomeStack}
             options={{
                 tabBarIcon: ({ focused }) => (
-                    <Feather
-                        name={focused ? "home" : "home"}
+                    <Ionicons
+                        name={focused ? "home" : "home-outline"}
                         color={COLORS.black}
-                        size={24}
-                        style={{ opacity: focused ? 1 : 0.5 }}
+                        size={25}
                     />
                 ),
             }}
@@ -171,11 +170,10 @@ const TabNavigator = () => (
             component={SearchScreen}
             options={{
                 tabBarIcon: ({ focused }) => (
-                    <Feather
-                        name="search"
+                    <Ionicons
+                        name={focused ? "search" : "search-outline"}
                         color={COLORS.black}
-                        size={24}
-                        style={{ opacity: focused ? 1 : 0.5 }}
+                        size={25}
                     />
                 ),
             }}
@@ -185,11 +183,10 @@ const TabNavigator = () => (
             component={CreatePostScreen}
             options={{
                 tabBarIcon: ({ focused }) => (
-                    <Feather
-                        name="plus-square"
+                    <Ionicons
+                        name={focused ? "add-circle" : "add-circle-outline"}
                         color={COLORS.black}
-                        size={24}
-                        style={{ opacity: focused ? 1 : 0.5 }}
+                        size={25}
                     />
                 ),
             }}
@@ -199,13 +196,19 @@ const TabNavigator = () => (
             component={ProfileStack}
             options={{
                 tabBarIcon: ({ focused }) => (
-                    <View style={focused ? styles.activeProfileIcon : null}>
-                        <Feather
-                            name="user"
-                            color={COLORS.black}
-                            size={24}
-                            style={{ opacity: focused ? 1 : 0.5 }}
-                        />
+                    <View>
+                        {focused ? (
+                            <Image
+                                source={require("../../assets/default-profile-picture.svg")}
+                                style={styles.profileImage}
+                            />
+                        ) : (
+                            <Ionicons
+                                name="person-outline"
+                                color={COLORS.black}
+                                size={25}
+                            />
+                        )}
                     </View>
                 ),
             }}
@@ -217,6 +220,13 @@ const styles = StyleSheet.create({
     activeProfileIcon: {
         borderRadius: 50,
         padding: 2,
+        borderWidth: 1,
+        borderColor: COLORS.black,
+    },
+    profileImage: {
+        width: 25,
+        height: 25,
+        borderRadius: 12.5,
         borderWidth: 1,
         borderColor: COLORS.black,
     },

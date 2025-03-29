@@ -91,3 +91,59 @@ User authentication is managed through the `AuthContext` which handles:
 -   Axios for API requests
 -   Expo for development and building
 -   React Native Elements for UI components
+
+## Instagram UI Styling Implementation
+
+We've implemented the following Instagram-like UI features to make our clone closely resemble the official Instagram app:
+
+### Navigation and Layout
+
+-   Instagram's logo in the top header
+-   Bottom tab navigation with Instagram-like icons
+-   Proper icon selection for active/inactive states
+-   Camera icon in the header's left side, and messaging/likes on the right
+-   Clean, minimalist white design with subtle borders
+
+### Home Feed
+
+-   Stories at the top with gradient borders and circular images
+-   Story rings with Instagram's gradient coloring
+-   "Your Story" with plus button for adding new stories
+-   Horizontally scrollable stories list
+
+### Posts
+
+-   Header with profile picture and username
+-   Double-tap to like functionality
+-   Post image with proper spacing
+-   Action buttons (like, comment, share) with Instagram's styling
+-   Like counts and caption formatting
+-   Properly styled timestamps
+-   View all comments link
+
+### Profile Page
+
+-   Profile stats layout (posts, followers, following)
+-   Bio section with proper styling
+-   Follow/Following button that toggles states
+-   Edit Profile button for own profile
+-   Stories highlights section with circular previews
+-   Grid/Tagged photos tabs
+-   3-column photo grid with proper spacing
+
+### Colors and Typography
+
+-   Used Instagram's official colors for elements:
+    -   Primary blue (#0095F6) for buttons and links
+    -   Like/heart color (#ED4956)
+    -   Proper grays for text and borders
+    -   Story gradient colors
+-   Proper font sizes and weights across the app
+
+### Additional UI Elements
+
+-   Added web scraper tool to reference Instagram's styling
+-   Implemented loading states
+-   Empty states for no posts
+
+This styling creates a cohesive Instagram-like experience throughout the app while maintaining good performance and responsiveness.

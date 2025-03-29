@@ -1,10 +1,10 @@
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 // Generate JWT Token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
+        expiresIn: "30d",
     });
 };
 
@@ -13,9 +13,11 @@ const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        const userExists = await User.findOne({ $or: [{ email }, { username }] });
+        const userExists = await User.findOne({
+            $or: [{ email }, { username }],
+        });
         if (userExists) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(400).json({ message: "User already exists" });
         }
 
         const user = await User.create({
@@ -50,7 +52,7 @@ const loginUser = async (req, res) => {
                 token: generateToken(user._id),
             });
         } else {
-            res.status(401).json({ message: 'Invalid email or password' });
+            res.status(401).json({ message: "Invalid email or password" });
         }
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -61,11 +63,11 @@ const loginUser = async (req, res) => {
 const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user._id)
-            .select('-password')
-            .populate('followers following', 'username profilePicture');
+            .select("-password")
+            .populate("followers following", "username profilePicture");
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
         res.json(user);
@@ -81,22 +83,24 @@ const followUser = async (req, res) => {
         const currentUser = await User.findById(req.user._id);
 
         if (!userToFollow || !currentUser) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
         if (currentUser.following.includes(req.params.id)) {
-            return res.status(400).json({ message: 'Already following this user' });
+            return res
+                .status(400)
+                .json({ message: "Already following this user" });
         }
 
         await User.findByIdAndUpdate(req.user._id, {
-            $push: { following: req.params.id }
+            $push: { following: req.params.id },
         });
 
         await User.findByIdAndUpdate(req.params.id, {
-            $push: { followers: req.user._id }
+            $push: { followers: req.user._id },
         });
 
-        res.json({ message: 'Successfully followed user' });
+        res.json({ message: "Successfully followed user" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -106,5 +110,5 @@ module.exports = {
     registerUser,
     loginUser,
     getUserProfile,
-    followUser
+    followUser,
 };

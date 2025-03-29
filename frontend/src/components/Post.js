@@ -8,7 +8,7 @@ import {
     Dimensions,
 } from "react-native";
 import { COLORS, FONTS, SIZES } from "../constants/theme";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { likePost } from "../services/mockApi";
 import { AuthContext } from "../context/AuthContext";
@@ -28,6 +28,12 @@ const Post = ({ post }) => {
             setLikesCount(liked ? likesCount - 1 : likesCount + 1);
         } catch (error) {
             console.error("Error liking post:", error);
+        }
+    };
+
+    const handleDoubleTap = () => {
+        if (!liked) {
+            handleLike();
         }
     };
 
@@ -58,17 +64,17 @@ const Post = ({ post }) => {
 
         const diffInMinutes = Math.floor(diffInSeconds / 60);
         if (diffInMinutes < 60) {
-            return `${diffInMinutes}m ago`;
+            return `${diffInMinutes}m`;
         }
 
         const diffInHours = Math.floor(diffInMinutes / 60);
         if (diffInHours < 24) {
-            return `${diffInHours}h ago`;
+            return `${diffInHours}h`;
         }
 
         const diffInDays = Math.floor(diffInHours / 24);
         if (diffInDays < 7) {
-            return `${diffInDays}d ago`;
+            return `${diffInDays}d`;
         }
 
         return date.toLocaleDateString();
@@ -82,20 +88,22 @@ const Post = ({ post }) => {
                     onPress={navigateToProfile}
                     style={styles.userInfo}
                 >
-                    <Image
-                        source={{
-                            uri:
-                                post.user.profilePicture ||
-                                "https://via.placeholder.com/150",
-                        }}
-                        style={styles.profilePic}
-                    />
+                    <View style={styles.profilePicWrapper}>
+                        <Image
+                            source={{
+                                uri:
+                                    post.user.profilePicture ||
+                                    "https://via.placeholder.com/150",
+                            }}
+                            style={styles.profilePic}
+                        />
+                    </View>
                     <Text style={styles.username}>{post.user.username}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <MaterialIcons
-                        name="more-vert"
-                        size={22}
+                    <Ionicons
+                        name="ellipsis-horizontal"
+                        size={20}
                         color={COLORS.black}
                     />
                 </TouchableOpacity>
@@ -104,7 +112,8 @@ const Post = ({ post }) => {
             {/* Post Image */}
             <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={navigateToPostDetail}
+                onPress={handleDoubleTap}
+                delayLongPress={200}
             >
                 <Image
                     source={{ uri: post.image }}
@@ -154,7 +163,11 @@ const Post = ({ post }) => {
             </View>
 
             {/* Likes Count */}
-            <Text style={styles.likesCount}>{likesCount} likes</Text>
+            {likesCount > 0 && (
+                <Text style={styles.likesCount}>
+                    {likesCount.toLocaleString()} likes
+                </Text>
+            )}
 
             {/* Caption */}
             {post.caption && (
@@ -183,8 +196,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: COLORS.white,
         marginBottom: SIZES.md,
-        borderBottomWidth: 0.5,
-        borderBottomColor: COLORS.mediumGray,
     },
     header: {
         flexDirection: "row",
@@ -197,13 +208,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
-    profilePic: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
+    profilePicWrapper: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
         marginRight: SIZES.sm,
-        borderWidth: 0.5,
-        borderColor: COLORS.mediumGray,
+        padding: 2,
+        borderWidth: 1,
+        borderColor: COLORS.storyGradient1,
+    },
+    profilePic: {
+        width: "100%",
+        height: "100%",
+        borderRadius: 16,
     },
     username: {
         fontWeight: "600",
@@ -213,6 +230,7 @@ const styles = StyleSheet.create({
     postImage: {
         width: width,
         height: width,
+        backgroundColor: COLORS.lightGray,
     },
     actions: {
         flexDirection: "row",
@@ -237,11 +255,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: SIZES.md,
         marginBottom: SIZES.xs,
+        flexWrap: "wrap",
     },
     caption: {
         marginLeft: SIZES.xs,
         fontSize: FONTS.sm,
         color: COLORS.black,
+        flex: 1,
+        flexWrap: "wrap",
     },
     viewComments: {
         color: COLORS.gray,
@@ -251,10 +272,10 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         color: COLORS.gray,
-        fontSize: FONTS.xxs,
         paddingHorizontal: SIZES.md,
         marginBottom: SIZES.md,
-        marginTop: SIZES.xs,
+        fontSize: FONTS.xxs,
+        textTransform: "uppercase",
     },
 });
 
