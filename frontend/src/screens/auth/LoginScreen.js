@@ -52,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
                 >
                     <View style={styles.logoContainer}>
                         <Image
-                            source={require("../../../assets/instagram-logo-text.png")}
+                            source={require("../../../assets/instagram-logo-text.svg")}
                             style={styles.logo}
                             resizeMode="contain"
                         />

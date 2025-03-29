@@ -39,7 +39,7 @@ const AuthStack = () => (
 // Instagram Logo Header Component
 const InstagramLogoTitle = () => (
     <Image
-        source={require("../../assets/instagram-logo-text.png")}
+        source={require("../../assets/instagram-logo-text.svg")}
         style={{ height: 40, width: 120, resizeMode: "contain" }}
     />
 );
