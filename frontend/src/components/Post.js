@@ -10,7 +10,7 @@ import {
 import { COLORS, FONTS, SIZES } from "../constants/theme";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { likePost } from "../services/api";
+import { likePost } from "../services/mockApi";
 import { AuthContext } from "../context/AuthContext";
 
 const { width } = Dimensions.get("window");

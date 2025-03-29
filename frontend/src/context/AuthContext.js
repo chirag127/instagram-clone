@@ -1,6 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { login as loginApi, register as registerApi } from "../services/api";
+// Use mock API for development
+import {
+    login as loginApi,
+    register as registerApi,
+} from "../services/mockApi";
 
 export const AuthContext = createContext();
 
@@ -42,7 +46,7 @@ export const AuthProvider = ({ children }) => {
             setUser(response.user);
             return response.user;
         } catch (error) {
-            setError(error.response?.data?.message || "Login failed");
+            setError(error.message || "Login failed");
             throw error;
         } finally {
             setLoading(false);
@@ -62,7 +66,7 @@ export const AuthProvider = ({ children }) => {
             setUser(response.user);
             return response.user;
         } catch (error) {
-            setError(error.response?.data?.message || "Registration failed");
+            setError(error.message || "Registration failed");
             throw error;
         } finally {
             setLoading(false);

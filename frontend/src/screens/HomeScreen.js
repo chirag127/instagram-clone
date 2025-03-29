@@ -10,7 +10,7 @@ import {
     StatusBar,
 } from "react-native";
 import Post from "../components/Post";
-import { getFeed } from "../services/api";
+import { getFeed } from "../services/mockApi";
 import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const HomeScreen = () => {

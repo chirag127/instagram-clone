@@ -51,11 +51,7 @@ const LoginScreen = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                 >
                     <View style={styles.logoContainer}>
-                        <Image
-                            source={require("../../../assets/instagram-logo-text.svg")}
-                            style={styles.logo}
-                            resizeMode="contain"
-                        />
+                        <Text style={styles.logoText}>Instagram</Text>
                     </View>
 
                     {error && <Text style={styles.errorText}>{error}</Text>}
@@ -124,9 +120,11 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.xxl,
         marginTop: SIZES.xxl,
     },
-    logo: {
-        width: 200,
-        height: 70,
+    logoText: {
+        fontFamily: "cursive",
+        fontSize: 48,
+        fontWeight: "500",
+        color: COLORS.black,
     },
     errorText: {
         color: COLORS.error,

@@ -38,10 +38,16 @@ const AuthStack = () => (
 
 // Instagram Logo Header Component
 const InstagramLogoTitle = () => (
-    <Image
-        source={require("../../assets/instagram-logo-text.svg")}
-        style={{ height: 40, width: 120, resizeMode: "contain" }}
-    />
+    <Text
+        style={{
+            fontFamily: "cursive",
+            fontSize: 28,
+            fontWeight: "500",
+            color: COLORS.black,
+        }}
+    >
+        Instagram
+    </Text>
 );
 
 // Home Stack Navigator

@@ -12,7 +12,7 @@ import {
     RefreshControl,
 } from "react-native";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
-import { getUserProfile, getUserPosts, followUser } from "../services/api";
+import { getUserProfile, getUserPosts, followUser } from "../services/mockApi";
 import { AuthContext } from "../context/AuthContext";
 import Button from "../components/Button";
 import { COLORS, FONTS, SIZES } from "../constants/theme";
