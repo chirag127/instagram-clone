@@ -11,11 +11,12 @@ import {
     Alert,
     SafeAreaView,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
-import { createPost } from "../services/api";
+import { createPost } from "../services/mockApi";
 import Button from "../components/Button";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const CreatePostScreen = () => {
     const navigation = useNavigation();
@@ -39,17 +40,35 @@ const CreatePostScreen = () => {
         })();
     }, []);
 
+    // Update the UI icons to match Instagram's style
+    useEffect(() => {
+        navigation.setOptions({
+            headerShown: true,
+            headerTitle: "New Post",
+            headerTitleStyle: {
+                fontWeight: "600",
+                fontSize: FONTS.md,
+                color: COLORS.black,
+            },
+            headerStyle: {
+                backgroundColor: COLORS.white,
+                shadowColor: COLORS.mediumGray,
+                elevation: 2,
+            },
+        });
+    }, [navigation]);
+
     const pickImage = async () => {
         try {
             let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                mediaTypes: [ImagePicker.MediaType.IMAGE],
                 allowsEditing: true,
                 aspect: [1, 1],
                 quality: 0.8,
             });
 
-            if (!result.canceled) {
-                setImage(result.uri);
+            if (!result.canceled && result.assets && result.assets.length > 0) {
+                setImage(result.assets[0].uri);
             }
         } catch (error) {
             console.error("Error picking image:", error);
@@ -96,9 +115,7 @@ const CreatePostScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Create New Post</Text>
-                </View>
+                {/* Header is now handled by navigation options */}
 
                 {error && (
                     <View style={styles.errorContainer}>
@@ -127,10 +144,10 @@ const CreatePostScreen = () => {
                             style={styles.imagePicker}
                             onPress={pickImage}
                         >
-                            <Ionicons
-                                name="image-outline"
+                            <Feather
+                                name="plus-square"
                                 size={50}
-                                color="#8e8e8e"
+                                color={COLORS.gray}
                             />
                             <Text style={styles.imagePickerText}>
                                 Tap to select an image
@@ -189,80 +206,88 @@ const CreatePostScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     header: {
-        padding: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: "#efefef",
+        padding: SIZES.md,
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLORS.mediumGray,
     },
     headerTitle: {
-        fontSize: 18,
-        fontWeight: "bold",
+        fontSize: FONTS.lg,
+        fontWeight: "600",
         textAlign: "center",
+        color: COLORS.black,
     },
     errorContainer: {
-        backgroundColor: "#ffcccc",
-        padding: 10,
-        margin: 10,
-        borderRadius: 5,
+        backgroundColor: COLORS.error,
+        padding: SIZES.md,
+        margin: SIZES.md,
+        borderRadius: SIZES.borderRadiusSm,
+        opacity: 0.7,
     },
     errorText: {
-        color: "#cc0000",
+        color: COLORS.white,
         textAlign: "center",
+        fontSize: FONTS.sm,
     },
     imagePickerContainer: {
         alignItems: "center",
-        marginVertical: 20,
+        marginVertical: SIZES.lg,
     },
     imagePicker: {
         width: 300,
         height: 300,
         borderWidth: 1,
-        borderColor: "#dbdbdb",
+        borderColor: COLORS.mediumGray,
         borderStyle: "dashed",
-        borderRadius: 10,
+        borderRadius: SIZES.borderRadiusSm,
         justifyContent: "center",
         alignItems: "center",
     },
     imagePickerText: {
-        marginTop: 10,
-        color: "#8e8e8e",
+        marginTop: SIZES.md,
+        color: COLORS.gray,
+        fontSize: FONTS.sm,
     },
     imagePreview: {
         width: 300,
         height: 300,
-        borderRadius: 10,
+        borderRadius: SIZES.borderRadiusSm,
     },
     changeImageButton: {
-        marginTop: 10,
+        marginTop: SIZES.md,
         alignSelf: "center",
     },
     changeImageText: {
-        color: "#3897f0",
+        color: COLORS.primary,
+        fontSize: FONTS.sm,
+        fontWeight: "500",
     },
     formContainer: {
-        padding: 15,
+        padding: SIZES.md,
     },
     inputGroup: {
-        marginBottom: 15,
+        marginBottom: SIZES.md,
     },
     label: {
-        fontSize: 14,
+        fontSize: FONTS.sm,
         fontWeight: "600",
-        marginBottom: 5,
+        marginBottom: SIZES.xs,
+        color: COLORS.black,
     },
     input: {
         borderWidth: 1,
-        borderColor: "#dbdbdb",
-        borderRadius: 5,
-        padding: 10,
-        fontSize: 16,
-        backgroundColor: "#fafafa",
+        borderColor: COLORS.mediumGray,
+        borderRadius: SIZES.borderRadiusSm,
+        padding: SIZES.md,
+        fontSize: FONTS.md,
+        backgroundColor: COLORS.lightGray,
+        color: COLORS.black,
     },
     buttonContainer: {
-        paddingHorizontal: 15,
-        marginBottom: 30,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.xl,
     },
 });
 
