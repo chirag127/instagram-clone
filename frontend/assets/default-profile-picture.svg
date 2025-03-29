@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Default Profile Picture</title>
+    <g id="Profile-Picture" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Background" fill="#DBDBDB" cx="75" cy="75" r="75"></circle>
+        <path d="M75,37.5 C63.75,37.5 54.375,46.875 54.375,58.125 C54.375,69.375 63.75,78.75 75,78.75 C86.25,78.75 95.625,69.375 95.625,58.125 C95.625,46.875 86.25,37.5 75,37.5 Z M75,86.25 C59.5875,86.25 28.125,94.0125 28.125,109.375 L28.125,116.875 C28.125,120.9375 31.4625,124.275 35.525,124.275 L114.475,124.275 C118.5375,124.275 121.875,120.9375 121.875,116.875 L121.875,109.375 C121.875,94.0125 90.4125,86.25 75,86.25 Z" id="Person" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>
