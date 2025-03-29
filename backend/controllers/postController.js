@@ -1,18 +1,28 @@
 const Post = require('../models/Post');
 
 // Create a post
-const createPost = async (req, res) => {
+const createPost = async (req, res, next) => { // Add next for error handling
     try {
-        const { image, caption } = req.body;
+        const { caption } = req.body;
+        if (!req.file) {
+            res.status(400);
+            return next(new Error('Please upload an image'));
+        }
+
+        // Construct the image path relative to the server root or a base URL
+        // For now, storing the path relative to the backend/uploads directory
+        const imagePath = `/uploads/${req.file.filename}`;
+
         const post = await Post.create({
             user: req.user._id,
-            image,
+            image: imagePath, // Save the path to the image
             caption
         });
 
         res.status(201).json(post);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error("Create Post Error:", error); // Log error
+        next(error); // Pass error to central handler
     }
 };
 
@@ -72,7 +82,7 @@ const addComment = async (req, res) => {
     try {
         const { text } = req.body;
         const post = await Post.findById(req.params.id);
-        
+
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }

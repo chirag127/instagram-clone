@@ -41,7 +41,8 @@ const loginUser = async (req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
-        if (user && (await user.matchPassword(password))) {
+        // Use comparePassword method from User model
+        if (user && (await user.comparePassword(password))) {
             res.json({
                 _id: user._id,
                 username: user.username,
@@ -62,11 +63,11 @@ const getUserProfile = async (req, res) => {
         const user = await User.findById(req.user._id)
             .select('-password')
             .populate('followers following', 'username profilePicture');
-        
+
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        
+
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });

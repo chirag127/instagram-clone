@@ -8,9 +8,10 @@ const {
     addComment
 } = require('../controllers/postController');
 const { protect } = require('../middlewares/authMiddleware');
+const upload = require('../middleware/upload'); // Import upload middleware
 
 // All routes are protected
-router.post('/', protect, createPost);
+router.post('/', protect, upload, createPost); // Add upload middleware
 router.get('/feed', protect, getFeedPosts);
 router.get('/user/:userId', protect, getUserPosts);
 router.post('/:id/like', protect, likePost);

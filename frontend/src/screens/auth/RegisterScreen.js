@@ -58,7 +58,7 @@ const RegisterScreen = ({ navigation }) => {
                 >
                     <View style={styles.logoContainer}>
                         <Image
-                            source={require("../../../assets/instagram-logo.png")}
+                            source={require("../../../assets/instagram-logo.svg")}
                             style={styles.logo}
                             resizeMode="contain"
                         />

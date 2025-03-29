@@ -6,7 +6,7 @@ const path = require("path");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
-
+const authRoutes = require("./routes/auth");
 dotenv.config();
 
 const app = express();
@@ -17,16 +17,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Connect to MongoDB
-mongoose
-    .connect(
-        process.env.MONGODB_URI || "mongodb://localhost:27017/instagram-clone"
-    )
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error("MongoDB connection error:", err));
+connectDB();
 
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/auth", authRoutes);
+
+// Serve uploaded files statically
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Serve static files in production
 if (process.env.NODE_ENV === "production") {
