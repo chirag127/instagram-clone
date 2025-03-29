@@ -13,6 +13,7 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
+import { COLORS, FONTS, SIZES } from "../../constants/theme";
 
 const RegisterScreen = ({ navigation }) => {
     const [username, setUsername] = useState("");
@@ -57,11 +58,7 @@ const RegisterScreen = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                 >
                     <View style={styles.logoContainer}>
-                        <Image
-                            source={require("../../../assets/instagram-logo.svg")}
-                            style={styles.logo}
-                            resizeMode="contain"
-                        />
+                        <Text style={styles.logoText}>Instagram</Text>
                     </View>
 
                     <Text style={styles.headerText}>
@@ -132,7 +129,7 @@ const RegisterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     keyboardContainer: {
         flex: 1,
@@ -140,46 +137,57 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
         justifyContent: "center",
-        padding: 20,
+        padding: SIZES.xl,
+        paddingTop: 0,
     },
     logoContainer: {
         alignItems: "center",
-        marginBottom: 20,
+        marginBottom: SIZES.lg,
+        marginTop: SIZES.xxl,
     },
-    logo: {
-        width: 200,
-        height: 80,
+    logoText: {
+        fontFamily: "cursive",
+        fontSize: 48,
+        fontWeight: "500",
+        color: COLORS.black,
     },
     headerText: {
         textAlign: "center",
-        marginBottom: 20,
-        fontSize: 16,
-        color: "#8e8e8e",
-        paddingHorizontal: 40,
+        marginBottom: SIZES.lg,
+        fontSize: FONTS.sm,
+        color: COLORS.gray,
+        paddingHorizontal: SIZES.xl,
     },
     errorText: {
-        color: "red",
-        marginBottom: 15,
+        color: COLORS.error,
+        marginBottom: SIZES.md,
         textAlign: "center",
+        fontSize: FONTS.sm,
     },
     termsText: {
         textAlign: "center",
-        marginTop: 20,
-        color: "#8e8e8e",
-        fontSize: 12,
+        marginTop: SIZES.lg,
+        color: COLORS.gray,
+        fontSize: FONTS.xs,
+        paddingHorizontal: SIZES.md,
     },
     footer: {
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 30,
+        marginTop: SIZES.xxl,
+        borderTopWidth: 1,
+        borderTopColor: COLORS.mediumGray,
+        paddingTop: SIZES.lg,
     },
     footerText: {
-        color: "#999",
-        marginRight: 5,
+        color: COLORS.gray,
+        marginRight: SIZES.xs,
+        fontSize: FONTS.sm,
     },
     loginText: {
-        color: "#3897f0",
-        fontWeight: "bold",
+        color: COLORS.primary,
+        fontWeight: "600",
+        fontSize: FONTS.sm,
     },
 });
 

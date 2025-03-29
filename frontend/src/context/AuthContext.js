@@ -20,11 +20,22 @@ export const AuthProvider = ({ children }) => {
                 const userData = await AsyncStorage.getItem("user");
                 const token = await AsyncStorage.getItem("token");
 
-                if (userData && token) {
-                    setUser(JSON.parse(userData));
+                if (userData && userData !== "undefined" && token) {
+                    try {
+                        const parsedUser = JSON.parse(userData);
+                        setUser(parsedUser);
+                    } catch (parseError) {
+                        console.error("Error parsing user data:", parseError);
+                        // Clear invalid data
+                        await AsyncStorage.removeItem("user");
+                        await AsyncStorage.removeItem("token");
+                    }
                 }
             } catch (error) {
                 console.error("Error retrieving auth data:", error);
+                // Clear potentially corrupted data
+                await AsyncStorage.removeItem("user");
+                await AsyncStorage.removeItem("token");
             } finally {
                 setLoading(false);
             }
@@ -40,10 +51,16 @@ export const AuthProvider = ({ children }) => {
 
             const response = await loginApi({ email, password });
 
-            await AsyncStorage.setItem("token", response.token);
-            await AsyncStorage.setItem("user", JSON.stringify(response.user));
-
-            setUser(response.user);
+            if (response && response.token && response.user) {
+                await AsyncStorage.setItem("token", response.token);
+                await AsyncStorage.setItem(
+                    "user",
+                    JSON.stringify(response.user)
+                );
+                setUser(response.user);
+            } else {
+                throw new Error("Invalid response from server");
+            }
             return response.user;
         } catch (error) {
             setError(error.message || "Login failed");
@@ -60,10 +77,16 @@ export const AuthProvider = ({ children }) => {
 
             const response = await registerApi({ username, email, password });
 
-            await AsyncStorage.setItem("token", response.token);
-            await AsyncStorage.setItem("user", JSON.stringify(response.user));
-
-            setUser(response.user);
+            if (response && response.token && response.user) {
+                await AsyncStorage.setItem("token", response.token);
+                await AsyncStorage.setItem(
+                    "user",
+                    JSON.stringify(response.user)
+                );
+                setUser(response.user);
+            } else {
+                throw new Error("Invalid response from server");
+            }
             return response.user;
         } catch (error) {
             setError(error.message || "Registration failed");
