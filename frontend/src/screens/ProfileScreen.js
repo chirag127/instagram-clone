@@ -11,10 +11,11 @@ import {
     Dimensions,
     RefreshControl,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { getUserProfile, getUserPosts, followUser } from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import Button from "../components/Button";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const { width } = Dimensions.get("window");
 const imageSize = width / 3 - 2;
@@ -109,7 +110,7 @@ const ProfileScreen = ({ route, navigation }) => {
     if (loading && !refreshing) {
         return (
             <View style={styles.centered}>
-                <ActivityIndicator size="large" color="#3897f0" />
+                <ActivityIndicator size="large" color={COLORS.primary} />
             </View>
         );
     }
@@ -247,66 +248,76 @@ const ProfileScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     centered: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: COLORS.white,
     },
     errorContainer: {
-        backgroundColor: "#ffcccc",
-        padding: 10,
-        margin: 10,
-        borderRadius: 5,
+        backgroundColor: COLORS.error,
+        padding: SIZES.md,
+        margin: SIZES.md,
+        borderRadius: SIZES.borderRadiusSm,
+        opacity: 0.7,
     },
     errorText: {
-        color: "#cc0000",
+        color: COLORS.white,
         textAlign: "center",
+        fontSize: FONTS.sm,
     },
     profileHeader: {
         flexDirection: "row",
-        padding: 15,
+        padding: SIZES.md,
         alignItems: "center",
     },
     profileImage: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
+        width: 86,
+        height: 86,
+        borderRadius: 43,
+        borderWidth: 0.5,
+        borderColor: COLORS.mediumGray,
     },
     statsContainer: {
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-around",
-        marginLeft: 15,
+        marginLeft: SIZES.md,
     },
     stat: {
         alignItems: "center",
     },
     statNumber: {
-        fontSize: 18,
-        fontWeight: "bold",
+        fontSize: FONTS.lg,
+        fontWeight: "600",
+        color: COLORS.black,
     },
     statLabel: {
-        fontSize: 12,
-        color: "#8e8e8e",
+        fontSize: FONTS.xs,
+        color: COLORS.gray,
+        marginTop: 2,
     },
     bioContainer: {
-        paddingHorizontal: 15,
-        marginBottom: 15,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.md,
     },
     username: {
-        fontWeight: "bold",
-        fontSize: 16,
-        marginBottom: 5,
+        fontWeight: "600",
+        fontSize: FONTS.md,
+        marginBottom: SIZES.xs,
+        color: COLORS.black,
     },
     bio: {
-        fontSize: 14,
+        fontSize: FONTS.sm,
+        color: COLORS.black,
+        lineHeight: 20,
     },
     actionContainer: {
         flexDirection: "row",
-        paddingHorizontal: 15,
-        marginBottom: 20,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.lg,
     },
     actionButton: {
         flex: 1,
@@ -315,23 +326,24 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     postsHeader: {
-        borderTopWidth: 1,
-        borderTopColor: "#efefef",
-        paddingVertical: 10,
-        marginBottom: 5,
+        borderTopWidth: 0.5,
+        borderTopColor: COLORS.mediumGray,
+        paddingVertical: SIZES.md,
+        marginBottom: SIZES.xs,
     },
     postsHeaderText: {
         textAlign: "center",
-        fontWeight: "bold",
-        fontSize: 14,
+        fontWeight: "600",
+        fontSize: FONTS.sm,
+        color: COLORS.black,
     },
     postsGrid: {
-        marginHorizontal: 1,
+        marginHorizontal: 0.5,
     },
     imageContainer: {
         width: imageSize,
         height: imageSize,
-        margin: 1,
+        margin: 0.5,
     },
     postImage: {
         width: "100%",
@@ -340,12 +352,13 @@ const styles = StyleSheet.create({
     emptyContainer: {
         alignItems: "center",
         justifyContent: "center",
-        padding: 50,
+        padding: SIZES.xxl,
     },
     emptyText: {
-        fontSize: 14,
-        color: "#8e8e8e",
-        marginTop: 10,
+        fontSize: FONTS.sm,
+        color: COLORS.gray,
+        marginTop: SIZES.md,
+        textAlign: "center",
     },
 });
 

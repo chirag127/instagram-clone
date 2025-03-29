@@ -1,5 +1,6 @@
 import React from "react";
 import { View, TextInput, Text, StyleSheet } from "react-native";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const FormInput = ({
     value,
@@ -22,7 +23,7 @@ const FormInput = ({
                 secureTextEntry={secureTextEntry}
                 autoCapitalize={autoCapitalize}
                 keyboardType={keyboardType}
-                placeholderTextColor="#999"
+                placeholderTextColor={COLORS.gray}
             />
             {error && <Text style={styles.errorText}>{error}</Text>}
         </View>
@@ -31,29 +32,31 @@ const FormInput = ({
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 15,
+        marginBottom: SIZES.md,
         width: "100%",
     },
     label: {
-        marginBottom: 5,
-        fontSize: 14,
+        marginBottom: SIZES.xs,
+        fontSize: FONTS.sm,
         fontWeight: "500",
+        color: COLORS.darkGray,
     },
     input: {
         borderWidth: 1,
-        borderColor: "#dbdbdb",
-        borderRadius: 5,
-        padding: 10,
-        fontSize: 16,
-        backgroundColor: "#fafafa",
+        borderColor: COLORS.mediumGray,
+        borderRadius: SIZES.borderRadiusSm,
+        padding: SIZES.md,
+        fontSize: FONTS.md,
+        backgroundColor: COLORS.lightGray,
+        height: 44, // Instagram's input height
     },
     inputError: {
-        borderColor: "red",
+        borderColor: COLORS.error,
     },
     errorText: {
-        color: "red",
-        fontSize: 12,
-        marginTop: 5,
+        color: COLORS.error,
+        fontSize: FONTS.xs,
+        marginTop: SIZES.xs,
     },
 });
 

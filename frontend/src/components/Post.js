@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Dimensions,
 } from "react-native";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { likePost } from "../services/api";
@@ -92,7 +93,11 @@ const Post = ({ post }) => {
                     <Text style={styles.username}>{post.user.username}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <MaterialIcons name="more-vert" size={24} color="black" />
+                    <MaterialIcons
+                        name="more-vert"
+                        size={22}
+                        color={COLORS.black}
+                    />
                 </TouchableOpacity>
             </View>
 
@@ -117,8 +122,8 @@ const Post = ({ post }) => {
                     >
                         <Ionicons
                             name={liked ? "heart" : "heart-outline"}
-                            size={28}
-                            color={liked ? "red" : "black"}
+                            size={26}
+                            color={liked ? COLORS.like : COLORS.black}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -127,20 +132,24 @@ const Post = ({ post }) => {
                     >
                         <Ionicons
                             name="chatbubble-outline"
-                            size={26}
-                            color="black"
+                            size={24}
+                            color={COLORS.black}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.actionButton}>
                         <Ionicons
                             name="paper-plane-outline"
-                            size={26}
-                            color="black"
+                            size={24}
+                            color={COLORS.black}
                         />
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity>
-                    <Ionicons name="bookmark-outline" size={26} color="black" />
+                    <Ionicons
+                        name="bookmark-outline"
+                        size={24}
+                        color={COLORS.black}
+                    />
                 </TouchableOpacity>
             </View>
 
@@ -172,28 +181,34 @@ const Post = ({ post }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
-        marginBottom: 10,
+        backgroundColor: COLORS.white,
+        marginBottom: SIZES.md,
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLORS.mediumGray,
     },
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: 10,
+        padding: SIZES.md,
+        paddingVertical: SIZES.sm,
     },
     userInfo: {
         flexDirection: "row",
         alignItems: "center",
     },
     profilePic: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-        marginRight: 10,
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        marginRight: SIZES.sm,
+        borderWidth: 0.5,
+        borderColor: COLORS.mediumGray,
     },
     username: {
-        fontWeight: "bold",
-        fontSize: 14,
+        fontWeight: "600",
+        fontSize: FONTS.sm,
+        color: COLORS.black,
     },
     postImage: {
         width: width,
@@ -202,38 +217,44 @@ const styles = StyleSheet.create({
     actions: {
         flexDirection: "row",
         justifyContent: "space-between",
-        padding: 10,
+        paddingHorizontal: SIZES.md,
+        paddingVertical: SIZES.sm,
     },
     leftActions: {
         flexDirection: "row",
     },
     actionButton: {
-        marginRight: 12,
+        marginRight: SIZES.lg,
     },
     likesCount: {
-        fontWeight: "bold",
-        paddingHorizontal: 10,
-        marginBottom: 5,
+        fontWeight: "600",
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.xs,
+        fontSize: FONTS.sm,
+        color: COLORS.black,
     },
     captionContainer: {
         flexDirection: "row",
-        paddingHorizontal: 10,
-        marginBottom: 5,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.xs,
     },
     caption: {
-        marginLeft: 5,
-        fontSize: 14,
+        marginLeft: SIZES.xs,
+        fontSize: FONTS.sm,
+        color: COLORS.black,
     },
     viewComments: {
-        color: "gray",
-        paddingHorizontal: 10,
-        marginBottom: 5,
+        color: COLORS.gray,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.xs,
+        fontSize: FONTS.sm,
     },
     timestamp: {
-        color: "gray",
-        fontSize: 12,
-        paddingHorizontal: 10,
-        marginBottom: 10,
+        color: COLORS.gray,
+        fontSize: FONTS.xxs,
+        paddingHorizontal: SIZES.md,
+        marginBottom: SIZES.md,
+        marginTop: SIZES.xs,
     },
 });
 

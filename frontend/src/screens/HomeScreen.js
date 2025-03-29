@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Post from "../components/Post";
 import { getFeed } from "../services/api";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const HomeScreen = () => {
     const [posts, setPosts] = useState([]);
@@ -65,7 +66,7 @@ const HomeScreen = () => {
         if (!loading) return null;
         return (
             <View style={styles.footer}>
-                <ActivityIndicator size="large" color="#3897f0" />
+                <ActivityIndicator size="large" color={COLORS.primary} />
             </View>
         );
     };
@@ -73,14 +74,14 @@ const HomeScreen = () => {
     if (loading && posts.length === 0) {
         return (
             <View style={styles.centered}>
-                <ActivityIndicator size="large" color="#3897f0" />
+                <ActivityIndicator size="large" color={COLORS.primary} />
             </View>
         );
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="dark-content" />
+            <StatusBar barStyle="dark-content" backgroundColor={COLORS.white} />
 
             {error && (
                 <View style={styles.errorContainer}>
@@ -120,39 +121,42 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     centered: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     footer: {
-        paddingVertical: 20,
-        borderTopWidth: 1,
-        borderTopColor: "#f5f5f5",
+        paddingVertical: SIZES.lg,
+        borderTopWidth: 0.5,
+        borderTopColor: COLORS.mediumGray,
     },
     errorContainer: {
-        backgroundColor: "#ffcccc",
-        padding: 10,
-        marginBottom: 5,
+        backgroundColor: COLORS.error,
+        padding: SIZES.md,
+        marginBottom: SIZES.xs,
+        opacity: 0.7,
     },
     errorText: {
-        color: "#cc0000",
+        color: COLORS.white,
         textAlign: "center",
+        fontSize: FONTS.sm,
     },
     emptyContainer: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: 20,
+        padding: SIZES.lg,
         height: 300,
     },
     emptyText: {
-        fontSize: 16,
-        color: "#8e8e8e",
+        fontSize: FONTS.md,
+        color: COLORS.gray,
         textAlign: "center",
+        lineHeight: 22,
     },
 });
 

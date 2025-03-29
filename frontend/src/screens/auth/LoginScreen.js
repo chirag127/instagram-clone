@@ -13,6 +13,7 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
+import { COLORS, FONTS, SIZES } from "../../constants/theme";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
                 >
                     <View style={styles.logoContainer}>
                         <Image
-                            source={require("../../../assets/instagram-logo.svg")}
+                            source={require("../../../assets/instagram-logo-text.png")}
                             style={styles.logo}
                             resizeMode="contain"
                         />
@@ -107,7 +108,7 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.white,
     },
     keyboardContainer: {
         flex: 1,
@@ -115,41 +116,50 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
         justifyContent: "center",
-        padding: 20,
+        padding: SIZES.xl,
+        paddingTop: 0,
     },
     logoContainer: {
         alignItems: "center",
-        marginBottom: 30,
+        marginBottom: SIZES.xxl,
+        marginTop: SIZES.xxl,
     },
     logo: {
         width: 200,
-        height: 80,
+        height: 70,
     },
     errorText: {
-        color: "red",
-        marginBottom: 15,
+        color: COLORS.error,
+        marginBottom: SIZES.md,
         textAlign: "center",
+        fontSize: FONTS.sm,
     },
     forgotPassword: {
         alignSelf: "flex-end",
-        marginBottom: 20,
+        marginBottom: SIZES.lg,
+        marginTop: SIZES.sm,
     },
     forgotPasswordText: {
-        color: "#3897f0",
-        fontSize: 14,
+        color: COLORS.primary,
+        fontSize: FONTS.sm,
     },
     footer: {
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 30,
+        marginTop: SIZES.xxl,
+        borderTopWidth: 1,
+        borderTopColor: COLORS.mediumGray,
+        paddingTop: SIZES.lg,
     },
     footerText: {
-        color: "#999",
-        marginRight: 5,
+        color: COLORS.gray,
+        marginRight: SIZES.xs,
+        fontSize: FONTS.sm,
     },
     signupText: {
-        color: "#3897f0",
-        fontWeight: "bold",
+        color: COLORS.primary,
+        fontWeight: "600",
+        fontSize: FONTS.sm,
     },
 });
 

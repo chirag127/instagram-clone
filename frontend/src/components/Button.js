@@ -5,6 +5,7 @@ import {
     StyleSheet,
     ActivityIndicator,
 } from "react-native";
+import { COLORS, FONTS, SIZES } from "../constants/theme";
 
 const Button = ({
     title,
@@ -28,7 +29,7 @@ const Button = ({
         >
             {loading ? (
                 <ActivityIndicator
-                    color={type === "primary" ? "#fff" : "#3897f0"}
+                    color={type === "primary" ? COLORS.white : COLORS.primary}
                 />
             ) : (
                 <Text
@@ -47,44 +48,46 @@ const Button = ({
 
 const styles = StyleSheet.create({
     button: {
-        borderRadius: 5,
-        paddingVertical: 12,
-        paddingHorizontal: 20,
+        borderRadius: SIZES.borderRadiusSm,
+        paddingVertical: SIZES.md,
+        paddingHorizontal: SIZES.lg,
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
     },
     button_primary: {
-        backgroundColor: "#3897f0",
+        backgroundColor: COLORS.primary,
     },
     button_secondary: {
         backgroundColor: "transparent",
         borderWidth: 1,
-        borderColor: "#3897f0",
+        borderColor: COLORS.primary,
     },
     button_link: {
         backgroundColor: "transparent",
-        paddingVertical: 8,
+        paddingVertical: SIZES.sm,
     },
     buttonDisabled: {
-        backgroundColor: "#a1c8f7",
-        borderColor: "#a1c8f7",
+        backgroundColor: COLORS.mediumGray,
+        borderColor: COLORS.mediumGray,
+        opacity: 0.7,
     },
     text: {
-        fontSize: 16,
+        fontSize: FONTS.md,
         fontWeight: "600",
+        fontFamily: FONTS.medium,
     },
     text_primary: {
-        color: "#fff",
+        color: COLORS.white,
     },
     text_secondary: {
-        color: "#3897f0",
+        color: COLORS.primary,
     },
     text_link: {
-        color: "#3897f0",
+        color: COLORS.primary,
     },
     textDisabled: {
-        color: "#fff",
+        color: COLORS.white,
     },
 });
 
