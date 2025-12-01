@@ -1,77 +1,82 @@
 ---
-name: Bug Report
-about: Report a bug in the project
-title: "Bug: "
-labels: bug
-assignees: ""
+name: "🐛 Bug Report"
+about: Report a reproducible bug or unexpected behavior in InstaFlow-Visual-Content-Sharing-Platform-Fullstack-WebApp.
+title: "[BUG]: Short, descriptive bug summary"
+labels: ["bug", "triage"]
+assignees: []
+---
 
-body:
-  - type: markdown
-    attributes:
-      value: |+
-        ## Report a Bug
-        Please provide a clear and concise description of the bug. Include steps to reproduce, expected behavior, and actual behavior.
+Thank you for taking the time to report a bug in **InstaFlow-Visual-Content-Sharing-Platform-Fullstack-WebApp**. Your detailed report helps us improve the platform for everyone.
 
-        ### System Information
-        * **Project Version:** (e.g., `git rev-parse --short HEAD`)
-        * **Operating System:** (e.g., Windows, macOS, Linux)
-        * **Node.js Version:** (if applicable)
-        * **Browser Version:** (if applicable)
+Before submitting, please ensure you have:
+- Searched existing [issues](https://github.com/chirag127/InstaFlow-Visual-Content-Sharing-Platform-Fullstack-WebApp/issues) to avoid duplicates.
+- Checked if the issue persists on the latest `main` branch.
 
---- ---
+---
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### Steps to Reproduce
-        1. Go to '...' 
-        2. Click on '....'
-        3. Scroll up from page '...'
-        4. See error
+### 📝 Describe the Bug
 
---- ---
+A clear and concise description of what the bug is. What happened that was not expected?
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### Expected Behavior
-        A clear description of what you expected to happen.
+---
 
---- ---
+### 🪜 Steps to Reproduce
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### Actual Behavior
-        A clear description of what actually happened.
+Please provide clear, step-by-step instructions to reproduce the behavior.
+**_Example:_**
+1. Navigate to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
---- ---
+---
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### Screenshots / Logs / Reproducible Example
-        If possible, add screenshots to help explain your problem, or any relevant logs or a link to a reproducible example.
+### 🧐 Expected Behavior
 
---- ---
+A clear and concise description of what you expected to happen.
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### Additional Context
-        Add any other context about the problem here. For example, you can mention specific configurations or environment details.
+---
 
---- ---
+### 😤 Actual Behavior
 
-  - type: markdown
-    attributes:
-      value: |+
-        ### AI Agent Directives Reference
-        This bug report is being processed with the following AI agent directives. For detailed information, refer to the project's `AGENTS.md` file.
+A clear and concise description of what actually happened, including any error messages in the console or UI.
 
-        * **Analysis Tier:** `gemini-3-pro-preview`
-        * **Reasoning Tier:** `gemini-2.5-pro`
-        * **Speed Tier:** `gemini-2.5-flash`
-        * **Core Technologies:** Python 3.12+, uv, Ruff, Pytest
-        * **Architecture:** Hexagonal Architecture
-        * **Compliance:** Zero-Defect, High-Velocity, Future-Proof
+---
+
+### 🖥️ Environment
+
+Please provide details about your development and runtime environment.
+
+-   **Operating System:** [e.g., macOS, Windows 11, Ubuntu 22.04]
+-   **Browser(s):** [e.g., Chrome 120, Firefox 118, Safari 17]
+-   **Node.js Version:** [e.g., `node -v`]
+-   **npm/Yarn/uv Version:** [e.g., `npm -v` or `yarn -v` or `uv -V`]
+-   **InstaFlow Version (if applicable):** [e.g., `v1.0.0` or `main` branch commit hash]
+-   **Any relevant backend/database details:** (e.g., PostgreSQL 14, Node.js v18 backend)
+
+---
+
+### 📸 Screenshots or Videos (Optional)
+
+If applicable, add screenshots or a short video to help explain your problem.
+You can drag and drop images directly into the issue description.
+
+---
+
+### 💡 Additional Context (Optional)
+
+Add any other context about the problem here. For example, did this bug start appearing after a specific change or update? Are there any workarounds you've found?
+
+---
+
+### ✅ Checklist
+
+- [ ] I have provided a clear and descriptive title.
+- [ ] I have described the bug and provided steps to reproduce.
+- [ ] I have included details about my environment.
+- [ ] I have attached screenshots/videos if relevant.
+- [ ] I have searched existing issues and confirmed no duplicates.
+
+---
+
+**Thank you for your contribution to InstaFlow-Visual-Content-Sharing-Platform-Fullstack-WebApp!**
