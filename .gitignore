@@ -1,43 +1,54 @@
-# Apex Technical Authority - Standardized .gitignore (2026 Baseline)
+# Built by Apex Technical Authority - December 2025
+# https://github.com/Apex-Technical-Authority
 
-# --- Build & Dependency Artifacts ---
-/dist
-/build
-/node_modules
-
-# Vite Build Artifacts
-.vite-cache
+# Node / JavaScript
+npm-debug.log*
 *.log
-
-# TypeScript
-*.tsbuildinfo
-tsconfig.tsbuildinfo
-
-# Testing & Coverage
-/coverage
-.nyc_output
-
-# Editor & IDE Files
+node_modules/
+npm-cache/
+.npm
+.node-gyp
 .vscode/
 .idea/
-*.sublime-project
 *.swp
+*.swo
 
-# Linting & Formatting Tools
-# Biome is used; these are usually safe to ignore if using --apply
-.biome.jsonc.lock
+# JavaScript build artifacts
+dist/
+build/
+.next/
+.vite/
+.nuxt/
 
-# Environment & Secrets
+# Environment variables
 .env
 .env.local
-/secrets
+.env.development.local
+.env.test.local
+.env.production.local
 
-# OS & Platform Specific
+# Test files
+coverage/
+*.test.js
+*.spec.js
+
+# TypeScript / Babel
+*.tsbuildinfo
+
+# IDE / Editor configuration
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.iml
+.project
+.classpath
+.settings/
+
+# Build tools and dependencies
+*.lock
+package-lock.json
+yarn.lock
+
+# OS generated files
 .DS_Store
 Thumbs.db
-
-# Dependencies managed by uv/npm/yarn/pnpm (depending on context, but node_modules is primary)
-
-# Output artifacts from external tools (e.g., Playwright traces, documentation generation)
-/playwright-report
-/docs-output
