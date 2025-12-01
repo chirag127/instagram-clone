@@ -1,64 +1,37 @@
-# 🚀 Pull Request: Architectural Alignment & Zero-Defect Submission
+# Pull Request Template
 
-**Reviewer Directive:** Treat this submission as a critical system update. Verify adherence to Apex Standards (SOLID, CQS, 12-Factor) and ensure comprehensive test coverage.
+## PR Checklist
 
----
+- [ ] I have read and understood the CONTRIBUTING guidelines.
+- [ ] My code adheres to the project's coding standards.
+- [ ] I have added/updated relevant tests for my changes.
+- [ ] All new and existing tests pass.
+- [ ] I have updated the documentation where necessary.
+- [ ] The README has been updated to reflect the changes.
+- [ ] My changes introduce no breaking changes or I have documented them clearly.
 
-## 📝 Summary of Changes
+## Description
 
-<!-- Clearly and concisely describe the purpose of this PR. What problem does it solve or what feature does it introduce? Use Conventional Commit format if possible (e.g., `feat:`, `fix:`, `refactor:`). -->
+Provide a clear and concise description of the changes introduced in this pull request. What problem does it solve? What new feature does it add? Why is this change necessary?
 
----
+## Related Issue(s)
 
-## 🎯 Architectural Verification Checklist
+If this PR closes or relates to any existing issues, please link them here (e.g., `Closes #123`, `Relates to #456`).
 
-*Ensure all applicable points are checked. If you introduced complexity, you MUST document the justification.*
+## Type of Change
 
-- [ ] **SOLID Adherence:** Does this change respect the Single Responsibility Principle?
-- [ ] **CQS Applied:** Are methods clearly Commands (write) or Queries (read)?
-- [ ] **Input Sanitization:** Are **ALL** new external inputs validated/sanitized (OWASP 2025 focus)?
-- [ ] **Error Handling:** Implemented robust `try-catch` or Rust `Result`/Go `error` handling? (No unhandled exceptions).
-- [ ] **Configuration:** Are all new configuration values externalized (12-Factor)?
-- [ ] **Performance:** Have I optimized complexity (e.g., avoiding $O(n^2)$ loops where possible)?
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Documentation update
+- [ ] Refactoring
+- [ ] Performance improvement
+- [ ] Other (please specify):
 
----
+## How Has This Been Tested?
 
-## 🧪 Testing Protocol Status
+Describe the tests that you ran to verify your changes. Provide instructions so we can reproduce the test.
 
-*Code without verifiable tests is non-compliant.*
+## Screenshots (if applicable)
 
-- [ ] **Unit Tests Added/Updated:** (Must cover new logic paths).
-- [ ] **E2E Tests Added/Updated:** (If UI/API interaction is modified).
-- [ ] **Test Coverage Increase:** (Aim for >90% line coverage on modified files).
-- [ ] **Local Verification:** All tests pass locally (`npm run test:ci`).
-
----
-
-## 📚 Documentation & Metadata Sync
-
-- [ ] **README.md Updated:** (If feature/architecture changed, sync the architecture diagram).
-- [ ] **Dependencies Updated:** (If `package.json` or lockfiles changed, verify SBOM generation).
-- [ ] **Agents.md Referenced:** (Did this change impact how automated agents interact with the codebase?).
-
----
-
-## 🖥️ Preview / Visual Changes (If Applicable)
-
-<!-- If this is a frontend change, describe the visual outcome or link to a required screenshot/video. -->
-
-**Screenshots/Videos:**
-
----
-
-## ⚠️ Potential Risks & Mitigation
-
-<!-- Identify any areas reviewer should focus on, especially concerning backward compatibility or race conditions. -->
-
-**Focus Areas for Reviewer:**
-
-1. 
-2. 
-
----
-
-**Self-Review Complete. Ready for Apex Review.**
+Add screenshots to help explain your changes, especially for UI-related changes.
