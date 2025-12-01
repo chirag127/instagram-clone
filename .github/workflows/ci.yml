@@ -1,0 +1,83 @@
+name: CI/CD Pipeline for InstaFlow WebApp
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Using LTS Node.js version
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Biome Linter
+        run: pnpm lint
+
+      - name: Run Vitest Unit Tests
+        run: pnpm test:unit
+
+      - name: Build Project
+        run: pnpm build
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/*.xml # Adjust path if Vitest output format differs
+          fail_ci_if_error: true
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: build-and-test # Ensure build and unit tests pass before E2E
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Project (for E2E)
+        run: pnpm build
+
+      - name: Install Playwright Browsers
+        run: pnpm playwright install --with-deps
+
+      - name: Start Preview Server
+        run: pnpm preview &
+        env:
+          PORT: 3000 # Default port for Vite preview, ensure it matches Playwright config
+
+      - name: Wait for server to be ready
+        uses: nick-invision/wait-for-port@v1
+        with:
+          port: 3000
+          timeout: 60000 # Wait up to 60 seconds
+
+      - name: Run Playwright E2E Tests
+        run: pnpm test:e2e
