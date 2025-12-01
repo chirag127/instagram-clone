@@ -1,54 +1,40 @@
-# Built by Apex Technical Authority - December 2025
-# https://github.com/Apex-Technical-Authority
-
-# Node / JavaScript
-npm-debug.log*
-*.log
+# Node.js
 node_modules/
-npm-cache/
-.npm
-.node-gyp
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# JavaScript build artifacts
 dist/
 build/
-.next/
-.vite/
-.nuxt/
-
-# Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 
-# Test files
-coverage/
-*.test.js
-*.spec.js
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 
-# TypeScript / Babel
+# Vite
+.vite/
+
+# TypeScript
 *.tsbuildinfo
 
-# IDE / Editor configuration
-.DS_Store
+# Testing
+coverage/
+
+# Editor/IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+.history/
 *.sublime-project
 *.sublime-workspace
-*.iml
-.project
-.classpath
-.settings/
 
-# Build tools and dependencies
-*.lock
-package-lock.json
-yarn.lock
-
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
+
+# Biome (if used for cache/config)
+.biome/
