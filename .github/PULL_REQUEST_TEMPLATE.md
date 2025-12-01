@@ -1,37 +1,63 @@
-# Pull Request Template
+---
+name: "Feature, Fix, or Chore"
+about: Use this template for most pull requests.
+title: ""
+labels: ["needs-review"]
+assignees: []
+---
 
-## PR Checklist
+## ✨ What does this PR do?
 
-- [ ] I have read and understood the CONTRIBUTING guidelines.
-- [ ] My code adheres to the project's coding standards.
-- [ ] I have added/updated relevant tests for my changes.
-- [ ] All new and existing tests pass.
-- [ ] I have updated the documentation where necessary.
-- [ ] The README has been updated to reflect the changes.
-- [ ] My changes introduce no breaking changes or I have documented them clearly.
+<!-- Briefly describe the purpose and context of this pull request. What problem does it solve? What new functionality does it add? -->
 
-## Description
+## 🔗 Related Issues
 
-Provide a clear and concise description of the changes introduced in this pull request. What problem does it solve? What new feature does it add? Why is this change necessary?
+<!-- Link any relevant GitHub issues or feature requests that this PR addresses. Use keywords like "Closes #", "Fixes #", or "Resolves #". -->
 
-## Related Issue(s)
+## 💡 Changes Made
 
-If this PR closes or relates to any existing issues, please link them here (e.g., `Closes #123`, `Relates to #456`).
+<!-- Provide a detailed list of the changes implemented in this PR. Be specific. -->
 
-## Type of Change
+- [ ] Added/Updated X feature for Y component.
+- [ ] Refactored Z module to improve A.
+- [ ] Fixed bug related to B in C.
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Refactoring
-- [ ] Performance improvement
-- [ ] Other (please specify):
+## 📸 Screenshots / Visual Proof (if applicable)
 
-## How Has This Been Tested?
+<!-- Include screenshots, GIFs, or videos demonstrating the changes, especially for UI/UX updates. -->
 
-Describe the tests that you ran to verify your changes. Provide instructions so we can reproduce the test.
+## 🧪 How to Test
 
-## Screenshots (if applicable)
+<!-- Provide clear, step-by-step instructions for reviewers to test and verify the changes. -->
 
-Add screenshots to help explain your changes, especially for UI-related changes.
+1.  Clone the repository: `git clone https://github.com/chirag127/InstaFlow-Visual-Content-Sharing-Platform-Fullstack-WebApp.git`
+2.  Navigate to the project directory.
+3.  Install dependencies: `uv sync`
+4.  Start the development server: `uv run dev`
+5.  (Further specific steps to test the feature/fix, e.g., "Go to `/profile`, then click `Edit`")
+
+## ✅ Checklist
+
+<!-- Before submitting, please ensure you've completed the following. -->
+
+- [ ] My code follows the project's coding style guidelines (enforced by Biome).
+- [ ] I have performed a self-review of my own code.
+- [ ] My changes generate no new warnings or errors.
+- [ ] I have added or updated tests that prove my fix is effective or my feature works.
+- [ ] New and existing unit/integration tests pass locally with my changes (`vitest`).
+- [ ] I have updated the documentation where necessary (e.g., `README.md`, inline comments).
+- [ ] My changes are fully accessible and adhere to WCAG standards.
+- [ ] My changes do not introduce any security vulnerabilities.
+- [ ] My changes do not negatively impact performance.
+- [ ] I have squashed my commits into logical units (if applicable).
+
+## 🚀 Deployment Notes (if applicable)
+
+<!-- Are there any special considerations for deploying this change? E.g., database migrations, environment variables, new services. -->
+
+## 👥 Reviewers
+
+<!-- @mention specific individuals or teams you'd like to review this PR. -->
+
+@chirag127 
+
